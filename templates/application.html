@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+
+    <div class="row">
+        <div class="col-md-4">
+            <h3>{{ object.job }}</h3>
+            <hr>
+            <h6>{{ object.name }}</h6>
+            <p>{{ object.email }}</p>
+            <p>{{ object.phone }}</p>
+            <p>{{ object.address }}</p>
+            <p>{{ object.cover_letter }}</p>
+            <p>{{ object.resume }}</p>
+        </div>
+    </div>
+
+{% else %}
+    <p>You are not authorized to view this page!</p>
+    <a href="{% url 'login' %}">For authorized entry</a>
+{% endif %}
+
+{% endblock %}

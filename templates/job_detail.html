@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <h3>{{ object.title }}</h3>
+        <p>{{ object.description }}</p>
+        <p>{{ object.number_of_people }}</p>
+        <p>{{ object.last_application_date }}</p>
+    </div>
+    <div class="col-md-8">
+        <form method="POST" enctype="multipart/form-data" novalidate>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    {{ form.name|as_crispy_field }}
+                </div>
+                <div class="form-group col-md-4">
+                    {{ form.email|as_crispy_field }}
+                </div>
+                <div class="form-group col-md-4">
+                    {{ form.phone|as_crispy_field }}
+                </div>
+            </div>
+            <div class="form-group">
+                    {{ form.address|as_crispy_field }}
+            </div>
+            <div class="form-group">
+                    {{ form.cover_letter|as_crispy_field }}
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-2">
+                    {{ form.resume|as_crispy_field }}
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Apply</button>
+            {% csrf_token %}
+        </form>
+    </div>
+</div>
+{% endblock %}

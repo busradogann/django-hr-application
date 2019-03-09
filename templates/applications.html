@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<div class="row">
+    {% for application in object_list %}
+        <div class="col-sm-4">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ application.name }}</h5>
+                    <p class="card-text">{{ application.email }}</p>
+                    <p class="card-text">{{ application.phone }}</p>
+                    <a href="{% url 'manager_application_detail' application.id %}" class="card-link">Application Detail</a>
+                </div>
+            </div>
+        </div>
+        {% if forloop.counter|divisibleby:3 %}
+            </div><div class="row" style="margin-top: 1rem;">
+        {% endif %}
+
+    {% endfor %}
+</div>
+{% else %}
+    <p>You are not authorized to view this page!</p>
+    <a href="{% url 'login' %}">For authorized entry</a>
+{% endif %}
+
+{% endblock %}
