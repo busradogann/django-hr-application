@@ -42,7 +42,9 @@ class JobDetail(FormMixin, DetailView):
 
 class ManagerJobCreate(FormView):
     model = Job
-    template_name = 'job_list.html'
+    form_class = JobForm
+    success_url = '/'
+    template_name = 'create_job.html'
 
 
 class ManagerApplicationList(ListView):
